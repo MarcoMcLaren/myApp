@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngFor="let restaurant of filteredRestaurants" (click)="addToCart(restaurant)">
+    <ion-item *ngFor="let restaurant of filteredRestaurants" lines="none" class="restaurant-item">
       <ion-thumbnail slot="start">
         <ion-img [src]="restaurant.image"></ion-img>
       </ion-thumbnail>
@@ -20,6 +20,7 @@
         <p>Distance: {{ restaurant.distance }}</p>
         <p>Price: {{ restaurant.price }}</p>
       </ion-label>
+      <ion-button (click)="addToCart(restaurant)" slot="end" fill="solid" size="medium">Add to Cart</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
