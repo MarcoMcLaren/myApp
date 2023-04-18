@@ -73,10 +73,9 @@ export class RestaurantService {
   // Delete a restaurant from the restaurants array
   deleteRestaurant(index: number): void {
     this.restaurants.splice(index, 1);
+
     // Save the updated restaurants array to local storage
     localStorage.setItem('restaurants', JSON.stringify(this.restaurants));
 
-     // Save the updated restaurants array to local storage
-     localStorage.setItem('restaurants', JSON.stringify(this.restaurants));
   }
 }
