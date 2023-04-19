@@ -45,16 +45,21 @@ export class SearchPage implements OnInit {
   }
 
   filterRestaurants(): void {
-    this.filteredRestaurants = this.restaurants.filter((restaurant) => {
-      return (
-        restaurant.name.toLowerCase().includes(this.searchText.toLowerCase())||
-        restaurant.type.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        restaurant.ratings.toString().includes(this.searchText) ||
-        restaurant.distance.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        restaurant.price.toString().includes(this.searchText)
-      );
-    });
+    if (this.searchText.trim() !== '') {
+      this.filteredRestaurants = this.restaurants.filter((restaurant) => {
+        return (
+          restaurant.name.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          restaurant.type.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          restaurant.ratings.toString().includes(this.searchText) ||
+          restaurant.distance.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          restaurant.price.toString().includes(this.searchText)
+        );
+      });
+    } else {
+      this.filteredRestaurants = [];
+    }
   }
+  
 
   onSearchChange(event: any): void {
     this.searchText = event.target.value;
