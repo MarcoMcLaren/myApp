@@ -37,11 +37,16 @@ export class CartPage implements OnInit {
 
   makePayment(): void {
     // Calculate the total price
-    const totalPrice = this.calculateTotal() + 50;
+    const totalPrice = this.calculateTotal() + 5;
 
-    // Save the order and total price to local storage
-    localStorage.setItem('order', JSON.stringify(this.orders));
-    localStorage.setItem('totalPrice', totalPrice.toString());
+    // Create an object that contains the order and total price
+    const orderData = {
+      orders: this.orders,
+      totalPrice: totalPrice
+    };
+
+    // Save the order data to local storage
+    localStorage.setItem('orders', JSON.stringify(this.orders));
 
     // Show a modal pop-up indicating successful payment
     alert('Payment Successful!');

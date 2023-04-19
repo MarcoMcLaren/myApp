@@ -5,6 +5,7 @@ export class Order {
     price: number;
     quantity: number;
     image: string;
+   
   
     constructor(
       restaurantId: number,
@@ -12,7 +13,8 @@ export class Order {
       dishName: string,
       price: number,
       quantity: number,
-      image: string
+      image: string,
+  
     ) {
       this.restaurantId = restaurantId;
       this.restaurantName = restaurantName;
@@ -20,5 +22,6 @@ export class Order {
       this.price = price;
       this.quantity = quantity;
       this.image = image;
+  
     }
   }

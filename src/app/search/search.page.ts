@@ -15,6 +15,7 @@ import { Order } from '../order';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class SearchPage implements OnInit {
+
   searchText: string ="";
   restaurants: Restaurant[] = [];
   filteredRestaurants: Restaurant[] = [];
@@ -33,18 +34,18 @@ export class SearchPage implements OnInit {
     });
   }
 
-  addToCart(restaurant: Restaurant): void {
-    const order: Order = {
-      restaurantId: restaurant.id,
-      restaurantName: restaurant.name,
-      dishName: restaurant.type,
-      quantity: 1,
-      price: restaurant.price,
-      image: restaurant.image
-    };
-    this.cartService.addToCart(order);
-    console.log(order);
-  }
+addToCart(restaurant: Restaurant): void {
+  const order: Order = {
+    restaurantId: restaurant.id,
+    restaurantName: restaurant.name,
+    dishName: restaurant.type,
+    quantity: 1,
+    price: restaurant.price,
+    image: restaurant.image
+  };
+  this.cartService.addToCart([order]);
+  console.log(order);
+}
 
   filterRestaurants(): void {
     if (this.searchText.trim() !== '') {

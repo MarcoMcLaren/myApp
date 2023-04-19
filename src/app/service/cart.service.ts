@@ -6,7 +6,6 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-
   private orders: Order[] = [];
 
   constructor() {
@@ -25,16 +24,18 @@ export class CartService {
     return of(this.orders);
   }
 
-  // Add a new order to the orders array
-  addToCart(order: Order): void {
-    // Check if the restaurant already exists in the cart
-    const index = this.orders.findIndex((o) => o.restaurantId === order.restaurantId);
-    if (index !== -1) {
-      // If the restaurant already exists, increment the quantity of the corresponding dish
-      this.orders[index].quantity++;
-    } else {
-      // If the restaurant does not exist, add the new order to the cart
-      this.orders.push(order);
+  // Add new orders to the orders array
+  addToCart(newOrders: Order[]): void {
+    for (const newOrder of newOrders) {
+      // Check if the restaurant already exists in the cart
+      const index = this.orders.findIndex((o) => o.restaurantName === newOrder.restaurantName && o.dishName === newOrder.dishName);
+      if (index !== -1) {
+        // If the restaurant already exists, increment the quantity of the corresponding dish for the specified order
+        this.orders[index].quantity += newOrder.quantity;
+      } else {
+        // If the restaurant does not exist, add the new order to the cart
+        this.orders.push(newOrder);
+      }
     }
     // Save the updated orders array to local storage
     localStorage.setItem('orders', JSON.stringify(this.orders));
