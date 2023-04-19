@@ -46,4 +46,13 @@ export class CartService {
     // Save the updated orders array to local storage
     localStorage.setItem('orders', JSON.stringify(this.orders));
   }
+
+  calculateTotal(deliveryFee: number): number {
+    let totalPrice = 0;
+    for (const order of this.orders) {
+      totalPrice += order.price * order.quantity;
+    }
+    totalPrice += deliveryFee;
+    return totalPrice;
+  }
 }

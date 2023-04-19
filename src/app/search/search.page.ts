@@ -39,9 +39,11 @@ export class SearchPage implements OnInit {
       restaurantName: restaurant.name,
       dishName: restaurant.type,
       quantity: 1,
-      price: 0
+      price: restaurant.price,
+      image: restaurant.image
     };
     this.cartService.addToCart(order);
+    console.log(order);
   }
 
   filterRestaurants(): void {
@@ -59,7 +61,6 @@ export class SearchPage implements OnInit {
       this.filteredRestaurants = [];
     }
   }
-  
 
   onSearchChange(event: any): void {
     this.searchText = event.target.value;
