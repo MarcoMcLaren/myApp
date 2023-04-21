@@ -18,23 +18,24 @@ export class AccountPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  
     const orderDataString = localStorage.getItem('orderData');
     if (orderDataString) {
       const orderData = JSON.parse(orderDataString);
       this.orders = orderData.orders;
-  
-      // Calculate the total cost of each order
-      this.orders.forEach((order) => {
-        order.price = order.price * order.quantity;
-      });
     }
   }
-  
+
   reorder(order: Order): void {
     // Set the order in the cart and navigate to the cart page
     localStorage.setItem('orders', JSON.stringify([order]));
-    window.location.href = '/cart';
+    window.location.href = '/search';
   }
 
+  calculateTotalCost(): number {
+    let totalCost = 0;
+    this.orders.forEach((order) => {
+      totalCost += order.price;
+    });
+    return totalCost + 5;
+  }
 }

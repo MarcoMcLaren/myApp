@@ -5,7 +5,28 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-card-header>
+      Order History
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let order of orders">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="order.image"></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ order.restaurantName }}</h2>
+            <p>{{ order.dishName }}</p>
+            <p>Quantity: {{ order.quantity }}</p>
+            <p>Price: {{ order.price }}</p>
+          </ion-label>
+          <ion-button (click)="reorder(order)">Reorder</ion-button>
+        </ion-item>
+      </ion-list>
+      <h2 style="font-size: 2em;">Total Cost: {{ calculateTotalCost() }}</h2>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 

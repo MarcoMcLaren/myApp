@@ -28,7 +28,7 @@ export class CartPage implements OnInit {
 
   deleteOrder(index: number): void {
     this.cartService.deleteOrder(index);
-    this.orders.splice(index, 1);
+    this.orders = this.orders.filter((order, i) => i !== index);
   }
 
   calculateTotal(): number {
@@ -46,7 +46,7 @@ export class CartPage implements OnInit {
     };
 
     // Save the order data to local storage
-    localStorage.setItem('orders', JSON.stringify(this.orders));
+    localStorage.setItem('orderData', JSON.stringify(orderData));
 
     // Show a modal pop-up indicating successful payment
     alert('Payment Successful!');
