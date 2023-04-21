@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Order } from '../order';
+import { CartService } from '../service/cart.service';
+
+
 
 @Component({
   selector: 'app-account',
@@ -15,7 +18,7 @@ export class AccountPage implements OnInit {
 
   orders: Order[] = [];
 
-  constructor() { }
+  constructor(private cartService: CartService) { this.cartService = cartService;}
 
   ngOnInit() {
     const orderDataString = localStorage.getItem('orderData');
@@ -26,8 +29,10 @@ export class AccountPage implements OnInit {
   }
 
   reorder(order: Order): void {
-    // Set the order in the cart and navigate to the cart page
-    localStorage.setItem('orders', JSON.stringify([order]));
+    // Add the order to the cart
+    this.cartService.addToCart([order]);
+  
+    // Navigate to the cart page
     window.location.href = '/search';
   }
 
