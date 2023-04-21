@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { Order } from '../order';
 import { CartService } from '../service/cart.service';
-
+import { CustomerService } from '../service/customer.service';
+import { Customer } from '../customer';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,8 +19,9 @@ import { CartService } from '../service/cart.service';
 export class AccountPage implements OnInit {
 
   orders: Order[] = [];
+  customer: any = {};
 
-  constructor(private cartService: CartService) { this.cartService = cartService;}
+  constructor(private cartService: CartService, private router: Router, private customerService: CustomerService) {}
 
   ngOnInit() {
     const orderDataString = localStorage.getItem('orderData');
@@ -26,6 +29,8 @@ export class AccountPage implements OnInit {
       const orderData = JSON.parse(orderDataString);
       this.orders = orderData.orders;
     }
+
+    this.customer = this.customerService.getCustomer();
   }
 
   reorder(order: Order): void {
@@ -33,7 +38,7 @@ export class AccountPage implements OnInit {
     this.cartService.addToCart([order]);
   
     // Navigate to the cart page
-    window.location.href = '/search';
+    this.router.navigateByUrl('/search');
   }
 
   calculateTotalCost(): number {
@@ -42,5 +47,10 @@ export class AccountPage implements OnInit {
       totalCost += order.price;
     });
     return totalCost + 5;
+  }
+
+  editCustomer(): void {
+    // Navigate to the customer page to edit the customer details
+    this.router.navigateByUrl('/customer');
   }
 }
