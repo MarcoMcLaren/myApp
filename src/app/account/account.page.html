@@ -7,19 +7,19 @@
 <ion-content>
 
 
- <ion-card>
+  <ion-card>
     <ion-card-header>
-      <ion-label>
+      <ion-label style="font-size: 2em;">
         <h1>My Account</h1>
       </ion-label>
       <ion-button color="secondary" (click)="editCustomer()">Edit</ion-button>
     </ion-card-header>
     <ion-card-content>
-      <h3>Customer Details:</h3>
-      <p>Name: {{ customer.name }}</p>
-      <p>Email: {{ customer.email }}</p>
-      <p>Phone: {{ customer.phone }}</p>
-      <p>Address: {{ customer.address }}</p>
+      <h3 style="font-size: 1.5em;">Customer Details:</h3>
+      <p style="font-size: 1.2em;">Name: {{ customer.name }}</p>
+      <p style="font-size: 1.2em;">Email: {{ customer.email }}</p>
+      <p style="font-size: 1.2em;">Phone: {{ customer.phone }}</p>
+      <p style="font-size: 1.2em;">Address: {{ customer.address }}</p>
     </ion-card-content>
   </ion-card>
 
@@ -40,16 +40,21 @@
             <p>{{ order.dishName }}</p>
             <p>Quantity: {{ order.quantity }}</p>
             <p>Price: {{ order.price }}</p>
+            <p>Delivery Instructions: {{ order.deliveryInstructions }}</p>
           </ion-label>
           <ion-button (click)="reorder(order)">Reorder</ion-button>
         </ion-item>
+        <ion-item>
+        </ion-item>
       </ion-list>
+  
       <h2 style="font-size: 2em;">Total Cost: {{ calculateTotalCost() }}</h2>
     </ion-card-content>
   </ion-card>
+  
+  <ion-button (click)="showHelp()">Get Help</ion-button>
+   
 </ion-content>
-
-
 
 
 

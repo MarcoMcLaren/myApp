@@ -21,6 +21,12 @@
       </ion-button>
     </ion-item>
   </ion-list>
+  <ion-item>
+    <ion-label position="stacked">Delivery Instructions</ion-label>
+    <br>
+    <ion-input [(ngModel)]="deliveryInstructions"></ion-input>
+    <br>
+  </ion-item>
   <ion-card>
     <ion-card class="cart-total-card">
       <ion-card-content class="cart-total-content">
@@ -35,7 +41,13 @@
           </ion-item>
         </ion-list>
       </ion-card-content>
+     
     </ion-card>
+    <br>
+    <ion-item>
+      <ion-icon name="home-outline" slot="start"></ion-icon>
+      <ion-label>Deliver to Office</ion-label>
+    </ion-item>
   </ion-card>
   <div class="container">
     <ion-button (click)="makePayment()">Make Payment</ion-button>

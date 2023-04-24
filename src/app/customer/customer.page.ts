@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CustomerService } from '../service/customer.service';
+import { Customer } from '../customer';
 
 @Component({
   selector: 'app-customer',
@@ -19,6 +20,7 @@ export class CustomerPage implements OnInit {
     phone: '',
     address: ''
   };
+  router: any;
 
   constructor(private customerService: CustomerService) { }
 
@@ -32,6 +34,7 @@ export class CustomerPage implements OnInit {
 
   updateCustomer() {
     this.customerService.updateCustomer(this.customer.name, this.customer.email, this.customer.phone, this.customer.address);
+     // Navigate to the cart page
   }
 
 
