@@ -63,6 +63,8 @@ addToCart(restaurant: Restaurant): void {
     }
   }
 
+  //The onSearchChange method of the SearchPage component is called when the user changes the search text. 
+  //It sets the searchText property and calls the filterRestaurants method to update the filteredRestaurants array.
   onSearchChange(event: any): void {
     this.searchText = event.target.value;
     this.filterRestaurants();
